@@ -159,7 +159,7 @@
 </x-app-layout>
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoibHV0cGkiLCJhIjoiY20zd2c1eDd4MTdqZDJrb25zd3RtOHR2ZyJ9.PNumriWk6d_liFZVU6Z74A';
+mapboxgl.accessToken = "{{ env('MAPBOX_TOKEN') }}";
 const map = new mapboxgl.Map({
 	container: 'map',
 	style: 'mapbox://styles/mapbox/streets-v12',
