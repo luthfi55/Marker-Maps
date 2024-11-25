@@ -40,9 +40,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">                    
+                <p style="margin-bottom:10px">* Right-click on the map to automatically fill in the latitude and longitude.</p>
                     <div class="map-form-container">                        
-                        <div id="map"></div>
-                        
+                        <div id="map"></div>                            
                         <form method="POST" action="{{ route('markers.store') }}">
                             @csrf
                             <div>
@@ -251,5 +251,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedCategory = categoryFilter.value;
     loadMarkers(selectedCategory);
     updateTable(selectedCategory);
+});
+</script>
+<script>    
+    // Event listener untuk klik kanan (contextmenu) pada peta
+map.on('contextmenu', (e) => {
+    const longitude = e.lngLat.lng;
+    const latitude = e.lngLat.lat;
+
+    new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(`
+            <div>
+                <p><strong>Longitude:</strong> ${longitude}</p>
+                <p><strong>Latitude:</strong> ${latitude}</p>
+            </div>
+        `)
+        .addTo(map);
+
+    document.getElementById('longitude').value = longitude;
+    document.getElementById('latitude').value = latitude;
 });
 </script>
