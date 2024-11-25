@@ -199,9 +199,12 @@ function loadMarkers(category = '') {
                 const mapMarker = new mapboxgl.Marker(customMarker)
                     .setLngLat([marker.longitude, marker.latitude])
                     .setPopup(new mapboxgl.Popup().setHTML(`
-                        <h4>${marker.place_name}</h4>
-                        <p>${marker.detail_address}</p>
-                        <p>${marker.description}</p>
+                        <h4><b>Place Name: </b>${marker.place_name}</h4>
+                        <p><b>Detail Address: </b>${marker.detail_address}</p>
+                        <p><b>Description: </b>${marker.description}</p>
+                        <p><b>Latitude: </b>${marker.latitude}</p>
+                        <p><b>Longitude: </b>${marker.longitude}</p>
+                        <p><b>Category: </b>${marker.category}</p>                        
                     `))
                     .addTo(map);
 
